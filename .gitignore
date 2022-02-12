@@ -2,3 +2,4 @@ node_modules/
 token.json
 newdiscordbot
 config.json
+.gitignore
