@@ -1,4 +1,0 @@
-{
-	"prefix": "i!",
-	"Database": "mongodb://localhost:27017/newdiscordbot"
-}
