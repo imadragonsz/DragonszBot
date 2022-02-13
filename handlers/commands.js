@@ -10,7 +10,7 @@ const Ascii = require('ascii-table');
 module.exports = async (client) => {
 	const table = new Ascii('command loaded');
 
-	commandsArray = [];
+	CommandsArray = [];
 	(await PG(`${process.cwd()}/commands/*/*.js`)).map(async (file) => {
 		const command = require(file);
 
@@ -24,7 +24,7 @@ module.exports = async (client) => {
 		}
 
 		client.commands.set(command.name, command);
-		commandsArray.push(command);
+		CommandsArray.push(command);
 
 		await table.addRow(command.name, '🔹 SUCCESFUL');
 	});
@@ -36,15 +36,15 @@ module.exports = async (client) => {
 	client.on('ready', async () => {
 		const MainGuild = await client.guilds.cache.get('857729547985879081');
 
-		MainGuild.commands.set(commandsArray).then(async (command) => {
+		MainGuild.commands.set(CommandsArray).then(async (command) => {
 			const Roles = (commandName) => {
-				const cmdPerms = commandsArray.find((c) => c.name === commandName).permission;
+				const cmdPerms = CommandsArray.find((c) => c.name === commandName).permission;
 				if (!cmdPerms) return null;
 
 				return MainGuild.roles.cache.filter((r) => r.permissions.has(cmdPerms));
 			};
 
-			const help = command.reduce((accumulator, r) => {
+			const fullPermissions = command.reduce((accumulator, r) => {
 				const roles = Roles(r.name);
 				if (!roles) return accumulator;
 
@@ -56,7 +56,7 @@ module.exports = async (client) => {
 			});
 			[];
 
-			await MainGuild.commands.permissions.set({ help });
+			await MainGuild.commands.permissions.set({ fullPermissions });
 		});
 	});
 };
