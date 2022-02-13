@@ -17,6 +17,10 @@ module.exports = {
 
 		const Welcome = new MessageEmbed()
 			.setColor('AQUA')
+			.setAuthor({
+				name: `${user.username}`,
+				iconURL: `${user.avatarURL({ dynamic: true, size: 512 })}`
+			})
 			.setThumbnail(user.avatarURL({ dynamic: true, size: 512 }))
 			.setDescription(
 				`
