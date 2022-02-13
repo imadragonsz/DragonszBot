@@ -1,4 +1,4 @@
-const { Perms } = require('../validation/permissions');
+const { Perms } = require('../Validation/permissions');
 const { client } = require('discord.js');
 const { promisify } = require('util');
 const { glob } = require('glob');
