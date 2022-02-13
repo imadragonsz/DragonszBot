@@ -10,4 +10,4 @@ client.commands = new Collection();
 require('./handlers/Events')(client);
 require('./handlers/commands')(client);
 
-client.login(token.token);
+client.login(token.key);
