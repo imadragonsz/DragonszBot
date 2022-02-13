@@ -11,6 +11,7 @@ module.exports = async (client) => {
 	const table = new Ascii('command loaded');
 
 	CommandsArray = [];
+
 	(await PG(`${process.cwd()}/commands/*/*.js`)).map(async (file) => {
 		const command = require(file);
 
@@ -50,11 +51,9 @@ module.exports = async (client) => {
 
 				const permissions = roles.reduce((a, r) => {
 					return [ ...a, { id: r.id, type: 'ROLE', permission: true } ];
-				});
-				[];
+				}, []);
 				return [ ...accumulator, { id: r.id, permissions } ];
-			});
-			[];
+			}, []);
 
 			await MainGuild.commands.permissions.set({ fullPermissions });
 		});
