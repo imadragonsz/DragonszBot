@@ -1,9 +1,0 @@
-node_modules/
-token.json
-newdiscordbot
-config.json
-.gitignore
-.vscode
-package-lock.json
-package.json
-pm2.json
