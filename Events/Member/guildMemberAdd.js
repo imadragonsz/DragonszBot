@@ -9,10 +9,9 @@ module.exports = {
      */
 	execute(member) {
 		const { user, guild } = member;
-		member.roles.add('942223170591653969');
 		const Welcomer = new WebhookClient({
-			id: '942224503235293245',
-			token: '-QX_WBv89hmuPFYYDzP7tkB3baPJtRYkk21PseRYlEzD7Q1FKGYEag8eyw3tBJ4WugKd'
+			id: '942891099507273758',
+			token: 'IDfkvl10MHqhtikWUV41PjOYvxQkHnz2RnJFmbwFFOMoNbS1dmGqGfsygLdCSU_Vwdfy'
 		});
 
 		const Welcome = new MessageEmbed()

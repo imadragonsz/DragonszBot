@@ -32,7 +32,7 @@ module.exports = async (client, PG, Ascii) => {
 	//persmissions check //
 
 	client.on('ready', async () => {
-		const MainGuild = await client.guilds.cache.get('857729547985879081');
+		const MainGuild = await client.guilds.cache.get('527147837151248394');
 
 		MainGuild.commands.set(CommandsArray).then(async (command) => {
 			const Roles = (commandName) => {
@@ -53,6 +53,30 @@ module.exports = async (client, PG, Ascii) => {
 			}, []);
 
 			await MainGuild.commands.permissions.set({ fullPermissions });
+		});
+	});
+	client.on('ready', async () => {
+		const SubGuild = await client.guilds.cache.get('857729547985879081');
+
+		SubGuild.commands.set(CommandsArray).then(async (command) => {
+			const Roles = (commandName) => {
+				const cmdPerms = CommandsArray.find((c) => c.name === commandName).permission;
+				if (!cmdPerms) return null;
+
+				return SubGuild.roles.cache.filter((r) => r.permissions.has(cmdPerms));
+			};
+
+			const fullPermissions = command.reduce((accumulator, r) => {
+				const roles = Roles(r.name);
+				if (!roles) return accumulator;
+
+				const permissions = roles.reduce((a, r) => {
+					return [ ...a, { id: r.id, type: 'ROLE', permission: true } ];
+				}, []);
+				return [ ...accumulator, { id: r.id, permissions } ];
+			}, []);
+
+			await SubGuild.commands.permissions.set({ fullPermissions });
 		});
 	});
 };
