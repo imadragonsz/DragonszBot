@@ -13,8 +13,7 @@ module.exports = {
 		const Response = new MessageEmbed()
 			.setColor('RED')
 			.setAuthor({
-				name: `${User.user.username}`,
-				iconURL: `${User.user.avatarURL({ dynamic: true, size: 512 })}`
+				name: 'Commands'
 			})
 			.addFields(
 				{
