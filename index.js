@@ -7,10 +7,10 @@ const { promisify } = require('util');
 const { glob } = require('glob');
 const PG = promisify(glob);
 const Ascii = require('ascii-table');
-const genshin = require('genshin');
-client.commands = new Collection();
+const genshindb = require('genshin-db');
+const genshincommand = [ 'Characterinfo', 'Weaponinfo' ];
 
-console.log(genshin.characters('raiden'));
+client.commands = new Collection();
 
 [ 'Events', 'Commands' ].forEach((handler) => {
 	require(`./Structures/Handlers/${handler}`)(client, PG, Ascii);
