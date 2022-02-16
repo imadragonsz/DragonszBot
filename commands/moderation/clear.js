@@ -49,7 +49,7 @@ module.exports = {
 			});
 		} else {
 			await channel.bulkDelete(Amount, true).then((messages) => {
-				Response.setDescription(`cleared ${messages.size} from this channel.`);
+				Response.setDescription(`cleared ${messages.size} messages from this channel.`);
 				interaction.reply({ embeds: [ Response ] });
 			});
 		}

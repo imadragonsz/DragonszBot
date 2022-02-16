@@ -8,8 +8,8 @@ const { glob } = require('glob');
 const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const genshindb = require('genshin-db');
-const genshincommand = [ 'Characterinfo', 'Weaponinfo' ];
 
+console.log(genshindb.characters('amber'));
 client.commands = new Collection();
 
 [ 'Events', 'Commands' ].forEach((handler) => {
