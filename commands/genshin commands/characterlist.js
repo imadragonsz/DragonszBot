@@ -47,27 +47,27 @@ module.exports = {
 		const Responsepyro = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available pyro characters')
-			.addField('names:', `${genshindb.characters('pyro', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('pyro', { matchCategories: true }).join('\n')}`);
 		const Responsegeo = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available geo characters')
-			.addField('names:', `${genshindb.characters('geo', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('geo', { matchCategories: true }).join('\n')}`);
 		const Responsecryo = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available cryo characters')
-			.addField('names:', `${genshindb.characters('cryo', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('cryo', { matchCategories: true }).join('\n')}`);
 		const Responseelectro = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available electro characters')
-			.addField('names:', `${genshindb.characters('electro', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('electro', { matchCategories: true }).join('\n')}`);
 		const Responseanemo = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available anemo characters')
-			.addField('names:', `${genshindb.characters('anemo', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('anemo', { matchCategories: true }).join('\n')}`);
 		const Responsehydro = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available hydro characters')
-			.addField('names:', `${genshindb.characters('hydro', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.characters('hydro', { matchCategories: true }).join('\n')}`);
 
 		const choices = interaction.options.getString('element');
 		switch (choices) {

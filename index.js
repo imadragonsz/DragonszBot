@@ -9,7 +9,8 @@ const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const genshindb = require('genshin-db');
 
-console.log(genshindb.domains('flame').images);
+console.log(genshindb.domains('inazuma', { matchCategories: true }));
+
 client.commands = new Collection();
 
 [ 'Events', 'Commands' ].forEach((handler) => {
