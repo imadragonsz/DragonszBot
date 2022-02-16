@@ -28,8 +28,13 @@ module.exports = {
 			.addField('name:', genshindb.characters(options.getString('character')).name)
 			.addField('rarity:', `${genshindb.characters(options.getString('character')).rarity}⭐`)
 			.addField('gender:', genshindb.characters(options.getString('character')).gender)
+			.addField('birthday:', genshindb.characters(options.getString('character')).birthday)
+			.addField('description:', genshindb.characters(options.getString('character')).description)
 			.addField('weapon:', genshindb.characters(options.getString('character')).weapontype)
-			.addField('region:', genshindb.characters(options.getString('character')).region);
+			.addField('substat:', genshindb.characters(options.getString('character')).substat)
+			.addField('region:', genshindb.characters(options.getString('character')).region)
+			.addField('va eng:', genshindb.characters(options.getString('character')).cv.english)
+			.addField('va jp:', genshindb.characters(options.getString('character')).cv.japanese);
 		interaction.reply({ embeds: [ Response ] });
 	}
 };

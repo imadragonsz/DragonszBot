@@ -27,7 +27,12 @@ module.exports = {
 				iconURL: genshindb.weapons(options.getString('weapon')).images.icon
 			})
 			.setThumbnail(genshindb.weapons(options.getString('weapon')).images.icon)
-			.addField('name:', genshindb.weapons(options.getString('weapon')).name);
+			.addField('name:', genshindb.weapons(options.getString('weapon')).name)
+			.addField('description:', genshindb.weapons(options.getString('weapon')).description)
+			.addField('effect:', genshindb.weapons(options.getString('weapon')).effect)
+			.addField('weapontype:', genshindb.weapons(options.getString('weapon')).weapontype)
+			.addField('substat:', genshindb.weapons(options.getString('weapon')).substat)
+			.addField('rarity:', `${genshindb.weapons(options.getString('weapon')).rarity}⭐`);
 
 		interaction.reply({ embeds: [ Responseweapon ] });
 	}

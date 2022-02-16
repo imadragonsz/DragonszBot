@@ -1,23 +1,112 @@
-const { CommandInteraction, MessageEmbed } = require('discord.js');
+const { CommandInteraction, MessageEmbed, Client } = require('discord.js');
 const genshindb = require('genshin-db');
 
 module.exports = {
 	name: 'characterlist',
-	description: 'a list of the available characters',
+	description: 'a list of the available characters per element',
+	options: [
+		{
+			name: 'element',
+			value: 'element',
+			description: 'select preffered character element',
+			type: 'STRING',
+			required: true,
+			choices: [
+				{
+					name: 'pyro',
+					value: 'pyro'
+				},
+				{
+					name: 'geo',
+					value: 'geo'
+				},
+				{
+					name: 'cryo',
+					value: 'cryo'
+				},
+				{
+					name: 'electro',
+					value: 'electro'
+				},
+				{
+					name: 'anemo',
+					value: 'anemo'
+				},
+				{
+					name: 'hydro',
+					value: 'hydro'
+				}
+			]
+		}
+	],
 	/**
- * 
+ * @param {Client} client
  * @param {CommandInteraction} interaction 
  */
-	async execute(interaction) {
-		console.log(genshindb.characters('names'));
-		const Response = new MessageEmbed()
+	async execute(interaction, client) {
+		const Responsepyro = new MessageEmbed()
 			.setColor('RED')
-			.setTitle('available characters')
-			.addField(
-				'names:',
-				`Aether\nAlbedo\nAloy\nAmber\nItto Arataki\nBarbara\nBeidou\nBennett\nChongyun\nDiluc\nDiona\nEula\nFischl\nGanyu\nGorou\nHuTao\nJean\nKazuha Kaedehara\nKaeya\nAyaka Kamisato\nKeqing\nKlee\nKujouSara\nLisa\nLumine\nMona\nNingguang\nNoelle\nQiqi\nRaidenShogun\nRazor\nRosaria\nKokomi Sangonomiya\nSayu\nShenhe\nSucrose\nTartaglia\nThoma\nVenti\nXiangling\nXiao\nXingqiu\nXinyan\nYaeMiko\nYanfei\nYoimiya\nYunJin\nZhongli`
-			);
+			.setTitle('available pyro characters')
+			.addField('names:', `${genshindb.characters('pyro', { matchCategories: true })}`);
+		const Responsegeo = new MessageEmbed()
+			.setColor('RED')
+			.setTitle('available geo characters')
+			.addField('names:', `${genshindb.characters('geo', { matchCategories: true })}`);
+		const Responsecryo = new MessageEmbed()
+			.setColor('RED')
+			.setTitle('available cryo characters')
+			.addField('names:', `${genshindb.characters('cryo', { matchCategories: true })}`);
+		const Responseelectro = new MessageEmbed()
+			.setColor('RED')
+			.setTitle('available electro characters')
+			.addField('names:', `${genshindb.characters('electro', { matchCategories: true })}`);
+		const Responseanemo = new MessageEmbed()
+			.setColor('RED')
+			.setTitle('available anemo characters')
+			.addField('names:', `${genshindb.characters('anemo', { matchCategories: true })}`);
+		const Responsehydro = new MessageEmbed()
+			.setColor('RED')
+			.setTitle('available hydro characters')
+			.addField('names:', `${genshindb.characters('hydro', { matchCategories: true })}`);
 
-		interaction.reply({ embeds: [ Response ] });
+		const choices = interaction.options.getString('element');
+		switch (choices) {
+			case 'pyro':
+				{
+					client.emit('pyro', interaction.member);
+					interaction.reply({ embeds: [ Responsepyro ] });
+				}
+				break;
+			case 'geo':
+				{
+					client.emit('geo', interaction.member);
+					interaction.reply({ embeds: [ Responsegeo ] });
+				}
+				break;
+			case 'cryo':
+				{
+					client.emit('cryo', interaction.member);
+					interaction.reply({ embeds: [ Responsecryo ] });
+				}
+				break;
+			case 'electro':
+				{
+					client.emit('electro', interaction.member);
+					interaction.reply({ embeds: [ Responseelectro ] });
+				}
+				break;
+			case 'anemo':
+				{
+					client.emit('anemo', interaction.member);
+					interaction.reply({ embeds: [ Responseanemo ] });
+				}
+				break;
+			case 'hydro':
+				{
+					client.emit('hydro', interaction.member);
+					interaction.reply({ embeds: [ Responsehydro ] });
+				}
+				break;
+		}
 	}
 };

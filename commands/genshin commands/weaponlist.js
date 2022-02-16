@@ -1,10 +1,9 @@
-const { val } = require('cheerio/lib/api/attributes');
 const { CommandInteraction, MessageEmbed, Client } = require('discord.js');
 const genshindb = require('genshin-db');
 
 module.exports = {
 	name: 'weaponlist',
-	description: 'a list of the available weapons',
+	description: 'a list of the available weapons per type',
 	options: [
 		{
 			name: 'types',
