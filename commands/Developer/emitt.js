@@ -19,6 +19,10 @@ module.exports = {
 				{
 					name: 'guildMemberRemove',
 					value: 'guildMemberRemove'
+				},
+				{
+					name: 'weaponinfo',
+					value: 'weaponinfo'
 				}
 			]
 		}
@@ -42,6 +46,12 @@ module.exports = {
 				{
 					client.emit('guildMemberRemove', interaction.member);
 					interaction.reply({ content: 'Emitted the event.', ephemeral: true });
+				}
+				break;
+			case 'weaponinfo':
+				{
+					client.emit('weaponinfo', interaction.member);
+					interaction.reply({ content: 'emitted the event', ephemeral: true });
 				}
 				break;
 		}

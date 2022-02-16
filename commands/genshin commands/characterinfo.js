@@ -25,8 +25,11 @@ module.exports = {
 				iconURL: genshindb.characters(options.getString('character')).images.icon
 			})
 			.setThumbnail(genshindb.characters(options.getString('character')).images.icon)
-			.addField('name:', genshindb.characters(options.getString('character')).name);
-
+			.addField('name:', genshindb.characters(options.getString('character')).name)
+			.addField('rarity:', `${genshindb.characters(options.getString('character')).rarity}⭐`)
+			.addField('gender:', genshindb.characters(options.getString('character')).gender)
+			.addField('weapon:', genshindb.characters(options.getString('character')).weapontype)
+			.addField('region:', genshindb.characters(options.getString('character')).region);
 		interaction.reply({ embeds: [ Response ] });
 	}
 };
