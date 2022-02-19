@@ -45,23 +45,23 @@ module.exports = {
 		const ResponseBow = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available bows')
-			.addField('names:', `${genshindb.weapons('bow', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.weapons('bow', { matchCategories: true }).join('\n')}`);
 		const Responsesword = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available swords')
-			.addField('names:', `${genshindb.weapons('sword', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.weapons('sword', { matchCategories: true }).join('\n')}`);
 		const Responseclaymore = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available claymores')
-			.addField('names:', `${genshindb.weapons('claymore', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.weapons('claymore', { matchCategories: true }).join('\n')}`);
 		const Responsespear = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available polearms')
-			.addField('names:', `${genshindb.weapons('polearm', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.weapons('polearm', { matchCategories: true }).join('\n')}`);
 		const Responsecatalyst = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available catalysts')
-			.addField('names:', `${genshindb.weapons('catalyst', { matchCategories: true })}`);
+			.addField('names:', `${genshindb.weapons('catalyst', { matchCategories: true }).join('\n')}`);
 
 		const choices = interaction.options.getString('types');
 		switch (choices) {

@@ -1,5 +1,10 @@
 const { CommandInteraction, MessageEmbed } = require('discord.js');
 const genshindb = require('genshin-db');
+const allchoices = genshindb.artifacts('5', { matchCategories: true });
+let choices = [];
+allchoices.forEach((c) => {
+	choices.push({ name: c, value: c });
+});
 
 module.exports = {
 	name: 'artifactinfo',
@@ -9,7 +14,8 @@ module.exports = {
 			name: 'artifact',
 			description: 'select the artifact set.',
 			type: 'STRING',
-			required: true
+			required: true,
+			choices: choices
 		}
 	],
 	/**

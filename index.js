@@ -9,9 +9,8 @@ const PG = promisify(glob);
 const Ascii = require('ascii-table');
 const genshindb = require('genshin-db');
 
-console.log(genshindb.domains('inazuma', { matchCategories: true }));
-
 client.commands = new Collection();
+console.log(genshindb.characters('klee').images);
 
 [ 'Events', 'Commands' ].forEach((handler) => {
 	require(`./Structures/Handlers/${handler}`)(client, PG, Ascii);

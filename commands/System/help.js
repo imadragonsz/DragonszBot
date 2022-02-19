@@ -17,6 +17,10 @@ module.exports = {
 			})
 			.addFields(
 				{
+					name: 'genshincommands',
+					value: '/genshincommands shows a list of the commands availble for genshin impact'
+				},
+				{
 					name: 'Testing Commands',
 					value: '/emitt: emitts a different command'
 				},

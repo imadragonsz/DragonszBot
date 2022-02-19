@@ -1,64 +1,72 @@
 const { kStringMaxLength } = require('buffer');
 const { CommandInteraction, MessageEmbed, Client, Util } = require('discord.js');
 const genshindb = require('genshin-db');
+const inazumadomains = genshindb.domains('inazuma', { matchCategories: true });
+let inazumachoices = [];
+inazumadomains.forEach((c) => {
+	if (c.includes('IV')) inazumachoices.push(c);
+});
+const mondstadtdomains = genshindb.domains('mondstadt', { matchCategories: true });
+let mondstadtchoices = [];
+mondstadtdomains.forEach((d) => {
+	if (d.includes('IV')) mondstadtchoices.push(d);
+});
+const liyuedomains = genshindb.domains('liyue', { matchCategories: true });
+let liyuechoices = [];
+liyuedomains.forEach((e) => {
+	if (e.includes('IV')) liyuechoices.push(e);
+});
 
 module.exports = {
 	name: 'domainlist',
 	description: 'shows the available domains',
 	options: [
 		{
-			name: 'domain-categories',
-			value: 'domain categories',
-			description: 'shows the domains categories available for listing',
-			type: 'SUB_COMMAND',
-			options: [
+			name: 'regions',
+			value: 'regions',
+			type: 'STRING',
+			description: 'the regions available',
+			required: true,
+			choices: [
 				{
-					name: 'region',
-					value: 'region',
-					description: 'choose a region for the available domains',
-					type: 'STRING',
-					required: false,
-					choices: [
-						{
-							name: 'inazuma',
-							value: 'inazuma'
-						},
-						{
-							name: 'mondstadt',
-							value: 'mondstadt'
-						},
-						{
-							name: 'liyue',
-							value: 'liyue'
-						}
-					]
+					name: 'inazuma',
+					value: 'inazuma'
+				},
+				{
+					name: 'mondstadt',
+					value: 'mondstadt'
+				},
+				{
+					name: 'liyue',
+					value: 'liyue'
 				}
 			]
 		}
 	],
+
 	/**
  * 
  * @param {Client}client
- * @param {Util}util
  * @param {CommandInteraction} interaction 
  */
-	async execute(interaction, client, util) {
+	async execute(interaction, client) {
+		console.log(inazumachoices);
 		const Inazumadomains = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available domains in Inazuma')
-			.addField('Domains', `${genshindb.domains('inazuma', { matchCategories: true }).join('\n')}`);
+			.addField('Domains', `${inazumachoices.join('\n')}`);
 
 		const Mondstadtdomains = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available domains in mondstadt')
-			.setDescription(`Domains\n ${genshindb.domains('mondstadt', { matchCategories: true }).join('\n')}`);
+			.setDescription(`Domains, ${mondstadtchoices.join('\n')}`);
+
 		const Liyuedomains = new MessageEmbed()
 			.setColor('RED')
 			.setTitle('available domains in liyue')
-			.addField('Domains', `${genshindb.domains('liyue', { matchCategories: true }).join('\n')}`);
+			.addField('Domains', `${liyuechoices.join('\n')}`);
 
-		const regionchoices = interaction.options.getString('region');
-		const typechoices = interaction.options.getString('type');
+		const regionchoices = interaction.options.getString('regions');
 		switch (regionchoices) {
 			case 'inazuma':
 				{
@@ -68,7 +76,7 @@ module.exports = {
 				break;
 			case 'mondstadt':
 				{
-					client.emit('mondstadt', '4', interaction.member);
+					client.emit('mondstadt', interaction.member);
 					interaction.reply({ embeds: [ Mondstadtdomains ] });
 				}
 				break;

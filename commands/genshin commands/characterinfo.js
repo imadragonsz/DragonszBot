@@ -7,7 +7,7 @@ module.exports = {
 	options: [
 		{
 			name: 'character',
-			description: 'select the character.',
+			description: 'select the character',
 			type: 'STRING',
 			required: true
 		}
@@ -17,24 +17,24 @@ module.exports = {
  * @param {CommandInteraction} interaction 
  */
 	async execute(interaction) {
-		const { options } = interaction;
 		const Response = new MessageEmbed()
 			.setColor('RED')
 			.setAuthor({
-				name: genshindb.characters(options.getString('character')).name,
-				iconURL: genshindb.characters(options.getString('character')).images.icon
+				name: genshindb.characters(interaction.options.getString('character')).name,
+				iconUrl: genshindb.characters(interaction.options.getString('character')).images.icon
 			})
-			.setThumbnail(genshindb.characters(options.getString('character')).images.icon)
-			.addField('name:', genshindb.characters(options.getString('character')).name)
-			.addField('rarity:', `${genshindb.characters(options.getString('character')).rarity}⭐`)
-			.addField('gender:', genshindb.characters(options.getString('character')).gender)
-			.addField('birthday:', genshindb.characters(options.getString('character')).birthday)
-			.addField('description:', genshindb.characters(options.getString('character')).description)
-			.addField('weapon:', genshindb.characters(options.getString('character')).weapontype)
-			.addField('substat:', genshindb.characters(options.getString('character')).substat)
-			.addField('region:', genshindb.characters(options.getString('character')).region)
-			.addField('va eng:', genshindb.characters(options.getString('character')).cv.english)
-			.addField('va jp:', genshindb.characters(options.getString('character')).cv.japanese);
+			.setThumbnail(genshindb.characters(interaction.options.getString('character')).images.icon)
+			.addField('name:', `${genshindb.characters(interaction.options.getString('character')).name}`)
+			.addField('rarity:', `${genshindb.characters(interaction.options.getString('character')).rarity}⭐`)
+			.addField('gender:', genshindb.characters(interaction.options.getString('character')).gender)
+			.addField('birthday:', genshindb.characters(interaction.options.getString('character')).birthday)
+			.addField('description:', genshindb.characters(interaction.options.getString('character')).description)
+			.addField('weapon:', genshindb.characters(interaction.options.getString('character')).weapontype)
+			.addField('substat:', genshindb.characters(interaction.options.getString('character')).substat)
+			.addField('region:', genshindb.characters(interaction.options.getString('character')).region)
+			.addField('voice eng:', genshindb.characters(interaction.options.getString('character')).cv.english)
+			.addField('voice jp:', genshindb.characters(interaction.options.getString('character')).cv.japanese);
+
 		interaction.reply({ embeds: [ Response ] });
 	}
 };

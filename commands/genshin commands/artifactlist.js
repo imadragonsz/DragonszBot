@@ -1,6 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require('discord.js');
 const genshindb = require('genshin-db');
-const { REPL_MODE_SLOPPY } = require('repl');
 
 module.exports = {
 	name: 'artifactlist',
