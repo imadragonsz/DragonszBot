@@ -10,7 +10,7 @@ const Ascii = require('ascii-table');
 const genshindb = require('genshin-db');
 
 client.commands = new Collection();
-console.log(genshindb.characters('klee').images);
+//console.log(genshindb.characters('klee').images);
 
 [ 'Events', 'Commands' ].forEach((handler) => {
 	require(`./Structures/Handlers/${handler}`)(client, PG, Ascii);
